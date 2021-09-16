@@ -1,0 +1,23 @@
+name: 'Test of github manual approval'
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@master
+      - name: test command 1
+        run: echo "job1"
+
+  job2:
+    runs-on: 'ubuntu-latest'
+    environment: 'foo'
+    needs: job1
+    steps:
+      - name: test command 2
+        run: echo "job2"
